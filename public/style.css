@@ -1,0 +1,54 @@
+@media (min-width: 768px) {
+  .container {
+    max-width: 750px;
+  }
+}
+
+.main-heading {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.section-area {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+#profile_photo {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  height: auto;
+  width: 120px;
+  max-width: 100%;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #E0E0E0;
+}
+
+#profile_full_name {
+  /*text-align: center;*/
+}
+
+.profile-info-cell{
+  padding-right: 1em;
+  float: left;
+  /*width: 33.33%;
+  text-align: center;*/
+}
+
+@media (min-width: 540px) {
+  .profile-info-cell {
+    padding-right: 2em;
+  }
+}
+
+
+#profile_error_area .info-text, #unknown_error_message_area .info-text {
+  padding: 2em;
+}
+
+#profile_area, #unknown_error_message_area {
+  display: none;
+}
