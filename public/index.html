@@ -21,15 +21,42 @@
 </head>
 
 <body>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">Social Stats</a>
+      </div>
+    </div>
+    <!-- /.container-fluid -->
+  </nav>
 
   <div class="container">
-    <h1 class="main-heading">Social Stats</h1>
+    <!--<h1 class="main-heading">Social Stats</h1>-->
     <div class="clearfix section-area">
       <p>Enter your instagram username below to view some insights about your profile: </p>
-      <form class="form-inline" action="javascript:fetchProfileData();">
-        <input class="form-control" type="text" name="ig_username" required>
-        <button class="btn btn-primary" type="submit">Get Stats</button>
+      <form class="form-horizontal" action="javascript:fetchProfileData();">
+        <div class="form-group">
+          <div class="col-xs-8">
+            <input class="form-control" type="text" name="ig_username" placeholder="instagram username" required>
+          </div>
+          <div class="col-xs-4 submit-button-container">
+            <button class="btn btn-primary" type="submit">Get Stats</button>
+          </div>
+        </div>
       </form>
+    </div>
+    <!--hidden on page load-->
+    <div id="loading_message_area" class="clearfix section-area">
+      <div class="center-block loader-circle"></div>
+      <p class="loader-message text-muted">If you have a lot of posts this may take some time.</p>
+    </div>
+    <!--hidden on page load-->
+    <div id="unknown_error_message_area" class="clearfix section-area">
+      <h3>Uh oh!</h3>
+      <div class="bg-info info-text">
+        <p></p>
+      </div>
     </div>
     <!--hidden on page load-->
     <div id="profile_area">
@@ -39,13 +66,16 @@
         </div>
         <div class="col-xs-8">
           <h3 id="profile_full_name"></h3>
-          <div>
-            <div id="profile_posts" class="profile-info-cell"></div>
-            <div id="profile_followers" class="profile-info-cell"></div>
-            <div id="profile_following" class="profile-info-cell"></div>
+          <div class="profile-info-cell-container">
+            <div>
+              <div id="profile_posts" class="profile-info-cell"></div>
+              <div id="profile_followers" class="profile-info-cell"></div>
+              <div id="profile_following" class="profile-info-cell"></div>
+            </div>
           </div>
         </div>
       </div>
+      <div class="line-separator"></div>
       <div id="profile_error_area" class="clearfix section-area">
         <h3>Whoops!</h3>
         <div class="bg-info info-text">
@@ -53,14 +83,30 @@
         </div>
       </div>
       <div id="profile_stats_area" class="clearfix section-area">
-        <h3>Stats :</h3>
-        <div id="chart_likes"></div>
-      </div>
-    </div>
-    <!--hidden on page load-->
-    <div id="unknown_error_message_area" class="clearfix section-area">
-      <div class="bg-info info-text">
-        <p></p>
+        <!--<h3 id="stats_source_msg" class="sub-heading underline"></h3>-->
+        <ul>
+          <li>
+            <h4 id="stats_average_likes"></h4>
+          </li>
+          <li>
+            <h4 id="stats_top_posts_msg"></h4>
+            <div class="row top_posts_container">
+              <!--sample top post thumbnail html-->
+              <div class="col-xs-4">
+                <div class="thumbnail">
+                  <a href="#" target="_blank"><img src=""></a>
+                  <div class="caption">
+                    <p></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <h4>Your likes graph:</h4>
+            <div id="chart_likes"></div>
+          </li>
+        </ul>
       </div>
     </div>
   </div>

@@ -4,14 +4,86 @@
   }
 }
 
+.loader-message {
+  text-align: center;
+  padding: 1em;
+}
+
+
+/* Spinner Circle Rotation */
+
+.loader-circle {
+  height: 50px;
+  width: 50px;
+  border: 4px #E0FFFF solid;
+  border-top: 4px #2196F3 solid;
+  border-radius: 50%;
+  -webkit-animation: loaderRotationAnimation .75s infinite linear;
+  animation: loaderRotationAnimation .75s infinite linear;
+}
+
+@-webkit-keyframes loaderRotationAnimation {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(359deg);
+  }
+}
+
+@keyframes loaderRotationAnimation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
 .main-heading {
   margin-top: 1em;
+}
+
+.sub-heading {
   margin-bottom: 1em;
 }
 
 .section-area {
-  margin-top: 1em;
-  margin-bottom: 1em;
+  padding: 0em 0em;
+}
+
+.underline {
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #424242;
+}
+
+.submit-button-container{
+  padding-top: 1em;
+}
+
+
+@media (min-width: 480px) {
+
+  .submit-button-container{
+    padding-top: 0em;
+  }
+}
+
+
+/*#profile_area {
+  border: #E0E0E0 1px solid;
+}*/
+
+#profile_information_area {
+  margin: 2em 0em;
+}
+
+.line-separator {
+  border-top: #E0E0E0 1px solid;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #profile_photo {
@@ -28,14 +100,18 @@
 }
 
 #profile_full_name {
-  /*text-align: center;*/
+  text-align: center;
 }
 
-.profile-info-cell{
+@media (min-width: 480px) {
+  #profile_full_name {
+    text-align: left;
+  }
+}
+
+.profile-info-cell {
   padding-right: 1em;
   float: left;
-  /*width: 33.33%;
-  text-align: center;*/
 }
 
 @media (min-width: 540px) {
@@ -44,11 +120,82 @@
   }
 }
 
+.profile-info-cell-container {
+  text-align: center;
+}
+
+.profile-info-cell-container>div {
+  display: inline-block;
+}
+
+@media (min-width: 480px) {
+  .profile-info-cell-container {
+    text-align: left;
+  }
+
+  .profile-info-cell-container>div {
+    display: block;
+  }
+}
+
+#profile_stats_area{
+  padding-top: 1em;
+}
 
 #profile_error_area .info-text, #unknown_error_message_area .info-text {
   padding: 2em;
 }
 
-#profile_area, #unknown_error_message_area {
+#profile_area, #unknown_error_message_area, #loading_message_area {
   display: none;
+}
+
+
+/*breakpoint changes, bootstrap grid and other.*/
+
+.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {
+  float: none;
+  width: 100%;
+}
+
+@media (min-width: 480px) {
+  .col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {
+    float: left;
+  }
+  .col-xs-12 {
+    width: 100%;
+  }
+  .col-xs-11 {
+    width: 91.66666667%;
+  }
+  .col-xs-10 {
+    width: 83.33333333%;
+  }
+  .col-xs-9 {
+    width: 75%;
+  }
+  .col-xs-8 {
+    width: 66.66666667%;
+  }
+  .col-xs-7 {
+    width: 58.33333333%;
+  }
+  .col-xs-6 {
+    width: 50%;
+  }
+  .col-xs-5 {
+    width: 41.66666667%;
+  }
+  .col-xs-4 {
+    width: 33.33333333%;
+  }
+  .col-xs-3 {
+    width: 25%;
+  }
+  .col-xs-2 {
+    width: 16.66666667%;
+  }
+  .col-xs-1 {
+    width: 8.33333333%;
+  }
 }

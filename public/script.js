@@ -1,6 +1,8 @@
 //config variables
 const GET_PROFILE_DATA_URL = "/getProfileData";
 const TOP_POSTS_MAX_LENGTH = 5;
+// sample ig_post_link = https://www.instagram.com/p/BUHuf-Gg1qc/?taken-by=vijitdhingra
+const IG_POST_LINK_BASE_URL = "https://www.instagram.com/p/";
 
 //will hold the raw_profile_data for the latest username for which data has been fetched.
 var raw_profile_data;
@@ -35,6 +37,11 @@ After required work is done, it calls one of displayStats() or displayUnknownErr
 function fetchProfileData() {
   var ig_username = $('input[name=ig_username]').val();
   console.log("..fetching profile data for " + ig_username);
+  //hiding previously displayed content
+  $("#profile_area").hide();
+  $("#unknown_error_message_area").hide();
+  //showing loader
+  $("#loading_message_area").show();
   //fetching instagram profile data through ajax GET request
   $.ajax({
     url: GET_PROFILE_DATA_URL,
@@ -44,6 +51,8 @@ function fetchProfileData() {
     method: "GET",
     dataType: "json",
     success: function(result) {
+      //hiding loader
+      $("#loading_message_area").hide();
       console.log("data fetched Successfully from url: " + GET_PROFILE_DATA_URL);
       console.log(result);
       if (result.error) {
@@ -61,6 +70,8 @@ function fetchProfileData() {
       }
     },
     error: function() {
+      //hiding loader
+      $("#loading_message_area").hide();
       var err_msg = "data could not be fetched from url: " + GET_PROFILE_DATA_URL;
       console.log(err_msg);
       displayUnknownErrorMessage(err_msg);
@@ -72,7 +83,7 @@ function displayUnknownErrorMessage(error_message) {
   //hiding #profile_area
   $("#profile_area").hide();
   $("#unknown_error_message_area").show();
-  $("#unknown_error_message_area .info-text").html("Uh oh! Something unexpected happened. </br> Error Message: " + error_message);
+  $("#unknown_error_message_area .info-text").html("Something unexpected happened. </br> Error Message: " + error_message);
 }
 
 function displayStats() {
@@ -102,6 +113,16 @@ function displayStats() {
     $("#profile_information_area").show();
     addContentToProfileInformationArea();
     $("#profile_stats_area").show();
+    $("#stats_source_msg").html("Stats based on your last " + profile_data.stats.posts_scanned + " posts");
+    $("#stats_average_likes").html("Average likes per post: <strong>" + Math.round(profile_data.stats.average_likes) + "</strong>");
+    $("#stats_top_posts_msg").html("Your top " + profile_data.stats.top_posts.length + " posts:")
+    $(".top_posts_container").html("");
+    var i;
+    for (i = profile_data.stats.top_posts.length - 1; i >= 0; --i) {
+      var post = profile_data.stats.top_posts[i];
+      var ig_post_link = IG_POST_LINK_BASE_URL + post.shortcode + "/?taken-by=" + profile_data.user_info.username;
+      $(".top_posts_container").append("<div class='col-xs-4'><div class='thumbnail'><a href='" + ig_post_link + "' target='_blank'><img src='" + post.thumbnail_src + "'></a><div class='caption'><p><b>" + post.edge_media_preview_like.count + "</b> likes</p></div></div></div>");
+    }
     drawLikesChart();
   }
 }
@@ -110,12 +131,12 @@ function displayStats() {
 Adds content to #profile_information_area based on profile_data.
 Assumes #profile_information_area is visible and profile_data contains appropriate information.
 */
-function addContentToProfileInformationArea(){
-  $("#profile_photo").attr('src',profile_data.user_info.profile_pic_url);
+function addContentToProfileInformationArea() {
+  $("#profile_photo").attr('src', profile_data.user_info.profile_pic_url);
   $("#profile_full_name").html(profile_data.user_info.full_name);
-  $("#profile_posts").html("posts: <b>"+profile_data.user_info.total_posts+"</b>");
-  $("#profile_followers").html("followers: <b>"+profile_data.user_info.followers+"</b>");
-  $("#profile_following").html("following: <b>"+profile_data.user_info.following+"</b>");
+  $("#profile_posts").html("posts: <strong>" + profile_data.user_info.total_posts + "</strong>");
+  $("#profile_followers").html("followers: <strong>" + profile_data.user_info.followers + "</strong>");
+  $("#profile_following").html("following: <strong>" + profile_data.user_info.following + "</strong>");
 }
 
 /*
@@ -126,13 +147,14 @@ function playWithRawProfileData() {
   var raw_user_information = raw_profile_data.user_details.user;
   var user_information = {};
   //extracting important user information from raw_profile_data.
-   user_information.full_name =  raw_user_information.full_name;
-   user_information.profile_pic_url = raw_user_information.profile_pic_url;
-   user_information.followers = raw_user_information.followed_by.count;
-   user_information.following = raw_user_information.follows.count;
-   user_information.total_posts = raw_user_information.media.count;
-   //populating profile_data.user_info
-   profile_data.user_info = user_information;
+  user_information.username = raw_user_information.username;
+  user_information.full_name = raw_user_information.full_name;
+  user_information.profile_pic_url = raw_user_information.profile_pic_url;
+  user_information.followers = raw_user_information.followed_by.count;
+  user_information.following = raw_user_information.follows.count;
+  user_information.total_posts = raw_user_information.media.count;
+  //populating profile_data.user_info
+  profile_data.user_info = user_information;
   //case when user has no posts
   if (raw_posts_data.count == 0) {
     profile_data.case = "NO_POSTS";
