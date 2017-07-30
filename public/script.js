@@ -83,7 +83,7 @@ function displayUnknownErrorMessage(error_message) {
   //hiding #profile_area
   $("#profile_area").hide();
   $("#unknown_error_message_area").show();
-  $("#unknown_error_message_area .info-text").html("Something unexpected happened. </br> Error Message: " + error_message);
+  $("#unknown_error_message_area .info-text").html("Something unexpected happened. Try again. If the error persists send a screenshot to my <a href='mailto:vijitdhingra@gmail.com'>email</a> so that I can check what's wrong. </br> Error Message: " + error_message);
 }
 
 function displayStats() {
@@ -113,15 +113,19 @@ function displayStats() {
     $("#profile_information_area").show();
     addContentToProfileInformationArea();
     $("#profile_stats_area").show();
-    $("#stats_source_msg").html("Stats based on your last " + profile_data.stats.posts_scanned + " posts");
+    $("#stats_source_msg").html("*Stats based on your last " + profile_data.stats.posts_scanned + " posts");
     $("#stats_average_likes").html("Average likes per post: <strong>" + Math.round(profile_data.stats.average_likes) + "</strong>");
-    $("#stats_top_posts_msg").html("Your top " + profile_data.stats.top_posts.length + " posts:")
+    $("#stats_top_posts_msg").html("Your top " + profile_data.stats.top_posts.length + " posts")
     $(".top_posts_container").html("");
     var i;
     for (i = profile_data.stats.top_posts.length - 1; i >= 0; --i) {
       var post = profile_data.stats.top_posts[i];
       var ig_post_link = IG_POST_LINK_BASE_URL + post.shortcode + "/?taken-by=" + profile_data.user_info.username;
-      $(".top_posts_container").append("<div class='col-xs-4'><div class='thumbnail'><a href='" + ig_post_link + "' target='_blank'><img src='" + post.thumbnail_src + "'></a><div class='caption'><p><b>" + post.edge_media_preview_like.count + "</b> likes</p></div></div></div>");
+      if (post.is_video) {
+        $(".top_posts_container").append("<div class='col-xs-4'><div class='thumbnail'><a href='" + ig_post_link + "' target='_blank'><img src='" + post.thumbnail_src + "'></a><span class='glyphicon glyphicon-play-circle video-icon'></span><div class='caption'><p><b>" + post.edge_media_preview_like.count + "</b> likes</p></div></div></div>");
+      } else {
+        $(".top_posts_container").append("<div class='col-xs-4'><div class='thumbnail'><a href='" + ig_post_link + "' target='_blank'><img src='" + post.thumbnail_src + "'></a><div class='caption'><p><b>" + post.edge_media_preview_like.count + "</b> likes</p></div></div></div>");
+      }
     }
     drawLikesChart();
   }
@@ -209,7 +213,8 @@ function drawLikesChart() {
     },
     vAxis: {
       title: 'Likes'
-    }
+    },
+    backgroundColor: "#FAFAFA"
   };
 
   var chart = new google.visualization.LineChart(document.getElementById('chart_likes'));

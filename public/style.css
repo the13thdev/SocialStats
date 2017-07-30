@@ -1,12 +1,23 @@
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .container {
-    max-width: 750px;
+    max-width: 970px;
   }
 }
 
 .loader-message {
   text-align: center;
   padding: 1em;
+}
+
+html {
+  height: 100%
+}
+
+body {
+  position: relative;
+  padding-bottom: 7rem;
+  min-height: 100%;
+  background-color: #FAFAFA;
 }
 
 
@@ -40,6 +51,32 @@
   }
 }
 
+.navbar-custom {
+  background-color: #E91E63;
+  border-color: #C2185B;
+  border-radius: 0px;
+}
+
+.navbar-custom .navbar-brand {
+  color: #ffffff;
+  font-family: 'Roboto', sans-serif;
+}
+
+
+.navbar-custom .navbar-brand:hover{
+  color: #F5F5F5;
+}
+
+.info-footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1.1rem;
+  background-color: #efefef;
+  text-align: center;
+}
+
 .main-heading {
   margin-top: 1em;
 }
@@ -58,32 +95,56 @@
   border-bottom-color: #424242;
 }
 
-.submit-button-container{
+.line-separator {
+  border-top: #BDBDBD 1px solid;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.stats-list>h4 {
+  border-left: 3px solid #2979FF;
+  font-size: 1.2em;
+  padding: 0.2em 0em 0.2em 1em;
+  margin-bottom: 1em;
+}
+
+.video-icon {
+  position: absolute;
+  right: 25px;
+  top: 10px;
+  color: #F5F5F5;
+  font-size: 3rem;
+}
+
+.submit-button-container {
   padding-top: 1em;
 }
 
-
 @media (min-width: 480px) {
-
-  .submit-button-container{
+  .submit-button-container {
     padding-top: 0em;
   }
 }
 
+#stats_source_msg {
+  text-align: center;
+  margin-bottom: 1em;
+}
 
-/*#profile_area {
-  border: #E0E0E0 1px solid;
-}*/
+@media (min-width: 640px) {
+  #stats_source_msg {
+    padding-right: 2em;
+    float: right;
+  }
+}
 
-#profile_information_area {
+.profile-content {
   margin: 2em 0em;
 }
 
-.line-separator {
-  border-top: #E0E0E0 1px solid;
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
+#loading_message_area {
+  padding: 1em 0em;
 }
 
 #profile_photo {
@@ -132,13 +193,12 @@
   .profile-info-cell-container {
     text-align: left;
   }
-
   .profile-info-cell-container>div {
     display: block;
   }
 }
 
-#profile_stats_area{
+#profile_stats_area {
   padding-top: 1em;
 }
 

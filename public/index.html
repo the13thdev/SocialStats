@@ -9,6 +9,8 @@
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!--Google font-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <!-- Custom CSS -->
   <link rel="stylesheet" href="style.css">
 
@@ -21,7 +23,7 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-default">
+  <nav class="navbar navbar-default navbar-custom">
     <div class="container">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
@@ -60,22 +62,24 @@
     </div>
     <!--hidden on page load-->
     <div id="profile_area">
-      <div id="profile_information_area" class="clearfix row section-area">
-        <div class="col-xs-4">
-          <img id="profile_photo">
-        </div>
-        <div class="col-xs-8">
-          <h3 id="profile_full_name"></h3>
-          <div class="profile-info-cell-container">
-            <div>
-              <div id="profile_posts" class="profile-info-cell"></div>
-              <div id="profile_followers" class="profile-info-cell"></div>
-              <div id="profile_following" class="profile-info-cell"></div>
+      <div id="profile_information_area">
+        <div class="clearfix row profile-content section-area">
+          <div class="col-xs-4">
+            <img id="profile_photo">
+          </div>
+          <div class="col-xs-8">
+            <h3 id="profile_full_name"></h3>
+            <div class="profile-info-cell-container">
+              <div>
+                <div id="profile_posts" class="profile-info-cell"></div>
+                <div id="profile_followers" class="profile-info-cell"></div>
+                <div id="profile_following" class="profile-info-cell"></div>
+              </div>
             </div>
           </div>
         </div>
+        <div class="line-separator"></div>
       </div>
-      <div class="line-separator"></div>
       <div id="profile_error_area" class="clearfix section-area">
         <h3>Whoops!</h3>
         <div class="bg-info info-text">
@@ -83,12 +87,9 @@
         </div>
       </div>
       <div id="profile_stats_area" class="clearfix section-area">
-        <!--<h3 id="stats_source_msg" class="sub-heading underline"></h3>-->
-        <ul>
-          <li>
+        <h4 id="stats_source_msg" class="small"></h4>
+        <div class="stats-list">
             <h4 id="stats_average_likes"></h4>
-          </li>
-          <li>
             <h4 id="stats_top_posts_msg"></h4>
             <div class="row top_posts_container">
               <!--sample top post thumbnail html-->
@@ -101,16 +102,15 @@
                 </div>
               </div>
             </div>
-          </li>
-          <li>
-            <h4>Your likes graph:</h4>
+            <h4>Your likes graph</h4>
             <div id="chart_likes"></div>
-          </li>
-        </ul>
+        </div>
       </div>
     </div>
   </div>
-
+  <div class="info-footer">
+    Get in touch? <a href="http://vijitdhingra.me" target="_blank">Vijit Dhingra</a>
+  </div>
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <!-- Bootstrap JavaScript -->
