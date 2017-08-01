@@ -36,7 +36,7 @@ After required work is done, it calls one of displayStats() or displayUnknownErr
 */
 function fetchProfileData() {
   var ig_username = $('input[name=ig_username]').val();
-  console.log("..fetching profile data for " + ig_username);
+  //console.log("..fetching profile data for " + ig_username);
   //hiding previously displayed content
   $("#profile_area").hide();
   $("#unknown_error_message_area").hide();
@@ -53,10 +53,10 @@ function fetchProfileData() {
     success: function(result) {
       //hiding loader
       $("#loading_message_area").hide();
-      console.log("data fetched Successfully from url: " + GET_PROFILE_DATA_URL);
-      console.log(result);
+      //console.log("data fetched Successfully from url: " + GET_PROFILE_DATA_URL);
+      //console.log(result);
       if (result.error) {
-        console.log(result.error);
+        //console.log(result.error);
         if (result.error.code == "INVALID_USERNAME") {
           profile_data.case = "INVALID_USERNAME";
           displayStats();
@@ -73,7 +73,7 @@ function fetchProfileData() {
       //hiding loader
       $("#loading_message_area").hide();
       var err_msg = "data could not be fetched from url: " + GET_PROFILE_DATA_URL;
-      console.log(err_msg);
+      //console.log(err_msg);
       displayUnknownErrorMessage(err_msg);
     }
   });
@@ -198,8 +198,8 @@ function playWithRawProfileData() {
     profile_stats.average_likes = (profile_stats.total_likes / raw_posts_data.edges.length);
     profile_data.stats = profile_stats;
   }
-  console.log("Profile Stats: ");
-  console.log(profile_data);
+  //console.log("Profile Stats: ");
+  //console.log(profile_data);
 }
 
 /*
