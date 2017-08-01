@@ -1,5 +1,8 @@
-#Ignoring Node Modules
-*node_modules/*
+# Node modules and build artifacts
+/node_modules
+npm-debug.log
+.DS_Store
+/*.env
 
 # Windows image file caches
 Thumbs.db

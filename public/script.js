@@ -79,6 +79,9 @@ function fetchProfileData() {
   });
 }
 
+/*
+Hides #profile_area and shows #unknown_error_message_area with the appropriate error message.
+*/
 function displayUnknownErrorMessage(error_message) {
   //hiding #profile_area
   $("#profile_area").hide();
@@ -86,6 +89,9 @@ function displayUnknownErrorMessage(error_message) {
   $("#unknown_error_message_area .info-text").html("Something unexpected happened. Try again. If the error persists send a screenshot to my <a href='mailto:vijitdhingra@gmail.com'>email</a> so that I can check what's wrong. </br> Error Message: " + error_message);
 }
 
+/*
+Hides #unknown_error_message_area and shows #profile_area with the relevant information
+*/
 function displayStats() {
   //hiding #unknown_error_message_area
   $("#unknown_error_message_area").hide();
@@ -144,7 +150,7 @@ function addContentToProfileInformationArea() {
 }
 
 /*
-Plays with raw_profile_data and populates profile_data
+Plays with raw_profile_data and populates profile_data which contains user information and generated stats.
 */
 function playWithRawProfileData() {
   var raw_posts_data = raw_profile_data.user_media.data.user.edge_owner_to_timeline_media;
