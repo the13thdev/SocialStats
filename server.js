@@ -8,7 +8,7 @@ var path = require('path');
 const IG_QUERY_ID = "17888483320059182";
 const HOMEPAGE_URL = "https://www.instagram.com/";
 const GRAPH_QUERY_URL = "https://www.instagram.com/graphql/query/";
-const NUMBER_OF_POSTS_TO_FETCH = 1000;
+const NUMBER_OF_POSTS_TO_FETCH = 500;
 
 //initializing express
 var app = express();
