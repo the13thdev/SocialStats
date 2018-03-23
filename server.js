@@ -37,7 +37,7 @@ app.get('/getProfileData', function(req, res, next) {
           console.log("data fetched Successfully from url " + userProfileURL);
           var response_data = {};
           response_data.user_details = JSON.parse(body);
-          var user_id = response_data.user_details.user.id;
+          var user_id = response_data.user_details.graphql.user.id;
           console.log("..user_id is " + user_id);
           request.get({
               url: GRAPH_QUERY_URL,

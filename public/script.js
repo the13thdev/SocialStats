@@ -154,15 +154,15 @@ Plays with raw_profile_data and populates profile_data which contains user infor
 */
 function playWithRawProfileData() {
   var raw_posts_data = raw_profile_data.user_media.data.user.edge_owner_to_timeline_media;
-  var raw_user_information = raw_profile_data.user_details.user;
+  var raw_user_information = raw_profile_data.user_details.graphql.user;
   var user_information = {};
   //extracting important user information from raw_profile_data.
   user_information.username = raw_user_information.username;
   user_information.full_name = raw_user_information.full_name;
   user_information.profile_pic_url = raw_user_information.profile_pic_url;
-  user_information.followers = raw_user_information.followed_by.count;
-  user_information.following = raw_user_information.follows.count;
-  user_information.total_posts = raw_user_information.media.count;
+  user_information.followers = raw_user_information.edge_followed_by.count;
+  user_information.following = raw_user_information.edge_follow.count;
+  user_information.total_posts = raw_posts_data.count;
   //populating profile_data.user_info
   profile_data.user_info = user_information;
   //case when user has no posts
