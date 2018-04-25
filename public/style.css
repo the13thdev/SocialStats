@@ -267,3 +267,7 @@ body {
     width: 8.33333333%;
   }
 }
+
+.nice-padding{
+  padding: 2em;
+}
