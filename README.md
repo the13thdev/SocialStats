@@ -3,4 +3,4 @@ Generates some profile statistics for a provided instagram public profile userna
 
 Tells you average likes per post, your top 5 posts and displays a graph showing how your likes have increased over time.
 
-Available at [socialstats.vijitdhingra.me](http://socialstats.vijitdhingra.me)
+Available at [social-stats-vd.herokuapp.com](https://social-stats-vd.herokuapp.com/)
